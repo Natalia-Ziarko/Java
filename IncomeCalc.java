@@ -70,15 +70,15 @@ public class IncomeCalc {
     }
 
     /**
-     * Adds to the array [0] - month number, [1] - input income.
+     * Adds months and incomes to the array.
      */
     public static void addIncomes() {
         for (int i = 0; i < MONTHS_NO; i++) {
             System.out.println("Income for month: " + (i + 1));
 
             try {
-                incomeMonth[i][0] = i + 1;
-                incomeMonth[i][1] = sc.nextDouble();
+                incomeMonth[i][MONTH_ROW_NO] = i + 1;
+                incomeMonth[i][INCOME_ROW_NO] = sc.nextDouble();
             } catch (InputMismatchException e) {
                 System.out.println(">>> Invalid input! Please enter a valid number. <<<\n");
                 sc.next();  // Consume the invalid input
@@ -97,7 +97,7 @@ public class IncomeCalc {
         System.out.println();
 
         for(int i = 0; i < MONTHS_NO; i++) {
-            System.out.println((int) incomeMonth[i][0] + " month, income: " + incomeMonth[i][1]);
+            System.out.println((int) incomeMonth[i][MONTH_ROW_NO] + " month, income: " + incomeMonth[i][INCOME_ROW_NO]);
         }
     }
 
@@ -107,7 +107,7 @@ public class IncomeCalc {
     public static void avgIncome() {
         double sum = 0, avg;
 
-        for(int i = 0; i < MONTHS_NO; i++) sum += incomeMonth[i][1];
+        for(int i = 0; i < MONTHS_NO; i++) sum += incomeMonth[i][INCOME_ROW_NO];
 
         avg = (double) Math.round(sum / MONTHS_NO * 100) / 100;
 
@@ -122,8 +122,8 @@ public class IncomeCalc {
         max = min = incomeMonth[0][1];
 
         for(int i = 1; i < MONTHS_NO; i++) {
-            if(max < incomeMonth[i][1]) max = incomeMonth[i][1];
-            if(min > incomeMonth[i][1]) min = incomeMonth[i][1];
+            if(max < incomeMonth[i][INCOME_ROW_NO]) max = incomeMonth[i][INCOME_ROW_NO];
+            if(min > incomeMonth[i][INCOME_ROW_NO]) min = incomeMonth[i][INCOME_ROW_NO];
         }
 
         System.out.println("\nMinimum income: " + min);
@@ -167,7 +167,7 @@ public class IncomeCalc {
         }
 
         for (int i = 0; i < MONTHS_NO; i++) {
-            System.out.println((int) sortedArray[i][0] + " month, income: " + sortedArray[i][1]);
+            System.out.println((int) sortedArray[i][MONTH_ROW_NO] + " month, income: " + sortedArray[i][INCOME_ROW_NO]);
         }
     }
 
@@ -176,21 +176,21 @@ public class IncomeCalc {
      */
     public static void lessMoreAvgIncomes() {
         double sum = 0, avg;
-        for(int i = 0; i < MONTHS_NO; i++) sum += incomeMonth[i][1];
+        for(int i = 0; i < MONTHS_NO; i++) sum += incomeMonth[i][INCOME_ROW_NO];
 
         avg = sum / MONTHS_NO;
 
         System.out.println("\nIncomes less than average income: ");
         for(int i = 0; i < MONTHS_NO; i++) {
-            if(incomeMonth[i][1] < avg) {
-                System.out.println("\t" + (int) incomeMonth[i][0] + " month, income: " + incomeMonth[i][1]);
+            if(incomeMonth[i][INCOME_ROW_NO] < avg) {
+                System.out.println("\t" + (int) incomeMonth[i][MONTH_ROW_NO] + " month, income: " + incomeMonth[i][INCOME_ROW_NO]);
             }
         }
 
         System.out.println("\nIncomes more than average income: ");
         for(int i = 0; i < MONTHS_NO; i++) {
-            if(incomeMonth[i][1] > avg) {
-                System.out.println("\t" + (int) incomeMonth[i][0] + " month, income: " + incomeMonth[i][1]);
+            if(incomeMonth[i][INCOME_ROW_NO] > avg) {
+                System.out.println("\t" + (int) incomeMonth[i][MONTH_ROW_NO] + " month, income: " + incomeMonth[i][INCOME_ROW_NO]);
             }
         }
     }
